@@ -54,7 +54,8 @@ export function Hero() {
           </span>{" "}
           <span className="block whitespace-nowrap">{HERO.final}</span>
         </h1>
-        <p className="rise mt-7 max-w-[34ch] text-[1.12rem] leading-snug [animation-delay:0.16s] md:text-[1.3rem]">
+        {/* Sem "rise": é o maior texto da dobra (LCP) e esperava a animação. */}
+        <p className="mt-7 max-w-[34ch] text-[1.12rem] leading-snug md:text-[1.3rem]">
           <span className="font-medium text-branco">{HERO.lead}</span> <span className="text-branco/60">{HERO.apoio}</span>
         </p>
         {/* Régua do corte: a linha vermelha do divisor, de "chapa" a "instalação". */}
