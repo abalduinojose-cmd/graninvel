@@ -612,7 +612,6 @@
   @keyframes abre-corte {
     from {
       clip-path: inset(0 48% 0 48% round 2rem);
-      opacity: 0.4;
     }
     to {
       clip-path: inset(0 0 0 0 round 2rem);

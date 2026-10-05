@@ -5,6 +5,11 @@
  */
 import type { StaticImageData } from "next/image";
 
+import capaBanheiros from "@/assets/capas/banheiro-bancada-clara.jpg";
+import capaCozinhas from "@/assets/capas/cozinha-granito-preto-serra.jpg";
+import capaEscadas from "@/assets/capas/escada-vidro-degraus-escuros.jpg";
+import capaExternas from "@/assets/capas/piscina-borda-pedra.jpg";
+import capaGourmet from "@/assets/capas/area-gourmet-vidro.jpg";
 import areaGourmet from "@/assets/fotos/area-gourmet-vidro.jpg";
 import banheiroCubas from "@/assets/fotos/banheiro-duas-cubas.jpg";
 import banheiroClaro from "@/assets/fotos/banheiro-bancada-clara.jpg";
@@ -48,9 +53,21 @@ const DESCRICOES: Record<Ambiente, string> = {
   "Áreas externas": "Bordas de piscina, prainhas e paredes revestidas em pedra.",
 };
 
+/* Capas do trilho já recortadas em 3:4 e leves (820px, ~120KB): na prévia
+   estática não há otimização de imagem, e a foto inteira (até 630KB)
+   disputava banda com o hero. A galeria abre as fotos em tamanho cheio. */
+const CAPAS: Record<Ambiente, StaticImageData> = {
+  Cozinhas: capaCozinhas,
+  "Áreas gourmet": capaGourmet,
+  Banheiros: capaBanheiros,
+  Escadas: capaEscadas,
+  "Áreas externas": capaExternas,
+};
+
 /** Ambientes para o trilho (layout da Cabana): capa, descrição e as fotos de cada um. */
 export const ambientes = (AMBIENTES.filter((a) => a !== "Todos") as Ambiente[]).map((nome) => ({
   nome,
   descricao: DESCRICOES[nome],
+  capa: CAPAS[nome],
   fotos: galeria.filter((f) => f.ambiente === nome),
 }));

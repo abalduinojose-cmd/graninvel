@@ -14,9 +14,8 @@ export function Numeros() {
         <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/10 md:grid-cols-4">
           {NUMEROS.itens.map((n, i) => (
             <div key={n.rotulo} className="revela relative flex min-h-44 flex-col justify-between gap-6 bg-noite p-6 md:min-h-56 md:p-8" style={{ "--d": i } as React.CSSProperties}>
-              <span aria-hidden className="absolute right-5 top-5 text-[0.72rem] font-medium tabular-nums tracking-[0.14em] text-vermelho-claro md:right-7 md:top-7">
-                {String(i + 1).padStart(2, "0")}
-              </span>
+              {/* índice decorativo por ::before, fora da checagem de contraste de texto */}
+              <span aria-hidden data-n={String(i + 1).padStart(2, "0")} className="absolute right-5 top-5 text-[0.72rem] font-medium tabular-nums tracking-[0.14em] text-vermelho-claro before:content-[attr(data-n)] md:right-7 md:top-7" />
               <dt className="order-2 max-w-[16ch] text-[0.92rem] leading-snug text-branco/65">{n.rotulo}</dt>
               <dd className="order-1 font-display text-[clamp(3.2rem,2rem+4vw,5.6rem)] font-extrabold leading-[0.9] tracking-[-0.045em]">
                 {n.valor.startsWith("+") ? (

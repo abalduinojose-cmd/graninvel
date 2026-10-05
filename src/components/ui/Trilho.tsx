@@ -4,6 +4,8 @@ import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Expand, X } from "luc
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 
+import type { StaticImageData } from "next/image";
+
 import type { FotoGaleria } from "@/content/galeria";
 import { cx } from "@/lib/cx";
 
@@ -56,7 +58,7 @@ export function Trilho({ rotulo, children, className, setasClassName }: { readon
   );
 }
 
-type Ambiente = { readonly nome: string; readonly descricao: string; readonly fotos: readonly FotoGaleria[]; readonly link: string; readonly verFotos: string; readonly cta: string };
+type Ambiente = { readonly nome: string; readonly descricao: string; readonly capa: StaticImageData; readonly fotos: readonly FotoGaleria[]; readonly link: string; readonly verFotos: string; readonly cta: string };
 
 /**
  * Ambientes (padrão "Espaços" da Cabana): um cartão por ambiente no trilho,
@@ -89,7 +91,7 @@ export function GaleriaAmbientes({ ambientes, rotulo }: { readonly ambientes: re
                   aria-label={`${a.verFotos} de ${a.nome.toLowerCase()}`}
                   className="group relative block aspect-[3/4] w-full overflow-hidden bg-nevoa"
                 >
-                  <Image src={capa.src} alt={capa.alt} fill quality={85} loading={i < 2 ? "eager" : "lazy"} sizes="(min-width: 640px) 24rem, 80vw" className="object-cover transition-transform duration-700 ease-[var(--ease-serra)] group-hover:scale-[1.04]" />
+                  <Image src={a.capa} alt={capa.alt} fill quality={85} sizes="(min-width: 640px) 24rem, 80vw" className="object-cover transition-transform duration-700 ease-[var(--ease-serra)] group-hover:scale-[1.04]" />
                   <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-noite/55 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <span aria-hidden className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-noite/50 px-3.5 py-2 text-[0.78rem] font-medium text-branco backdrop-blur-sm">
                     <Expand className="size-3.5" strokeWidth={1.75} />
