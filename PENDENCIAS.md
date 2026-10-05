@@ -26,8 +26,14 @@ Dados reais já no site (conferidos em 04/10/2026):
 
 ## Sobre as avaliações
 
-O perfil tem 25 avaliações de 5 estrelas e 5 de 1 estrela. O site mostra a
-nota real (4,3) sempre com o total (30) e 8 avaliações de 5 estrelas, com o
-texto exatamente como está no Google. Ficaram de fora as de 1 estrela, uma
-de empresa ("HGS Reformas"), uma que cita outra marmoraria pelo nome e as
-de uma palavra só.
+O perfil tem 25 avaliações de 5 estrelas e 5 de 1 estrela (média 4,3). A
+pedido do cliente (04/10/2026) o site **não mostra a média nem as de 1
+estrela**: fala só das 25 avaliações de 5 estrelas e mostra 8 delas com o
+texto exatamente como está no Google. O botão "Ver todas no Google" leva ao
+perfil, onde a média aparece.
+
+## Prévia
+
+https://abalduinojose-cmd.github.io/graninvel/ (repositório
+`abalduinojose-cmd/graninvel`). Para atualizar: `npm run build:pages`,
+`node material/verificar-estatico.mjs`, commit e push.

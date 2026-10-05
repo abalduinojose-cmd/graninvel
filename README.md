@@ -16,6 +16,7 @@ npm run dev          # http://localhost:5250
 npm run build        # confere a rota / como estática (○)
 npm run baixar-google  # fotos do Perfil no Google (ids em midia/google/ids.txt)
 npm run fotos        # curadoria das fotos, amostras das pedras e avatares
+npm run hero         # foto do hero em alta (g05, 6240px): corte paisagem e retrato
 npm run logo         # losango e ícones a partir de midia/logo-perfil.jpg
 npm run videos       # reels do Instagram, capas e texturas
 python scripts/mapa.py  # mapa OSM recolorido (crédito © OpenStreetMap visível)
@@ -32,4 +33,6 @@ npm run build:pages  # prévia estática em docs/ (GitHub Pages)
   movimento" ligado, nada se desloca: só fades e a frase que acende.
 - Testes: `node material/testes.mjs` (com o dev de pé); estados de rolagem:
   `node material/efeitos.mjs 1440|375 [reduce]`.
+- Prévia: https://abalduinojose-cmd.github.io/graninvel/ (`npm run build:pages` + commit + push).
+- `src/app/opengraph-image.jpg` é estática (85 KB; o PNG gerado tinha 875 KB).
 - Pendências: `PENDENCIAS.md`. `midia/` e `videos/` ficam fora do repositório.
