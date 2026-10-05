@@ -11,7 +11,7 @@ const b = await puppeteer.launch({ executablePath: "C:/Program Files/Google/Chro
 const p = await b.newPage();
 await p.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: reduce ? "reduce" : "no-preference" }]);
 await p.setViewport({ width: w, height: w < 768 ? 812 : 900, deviceScaleFactor: 1 });
-await p.goto("http://localhost:5250/", { waitUntil: "networkidle0", timeout: 120000 });
+await p.goto(process.env.URL ?? "http://localhost:5250/", { waitUntil: "networkidle0", timeout: 120000 });
 await p.addStyleTag({ content: "html{scroll-behavior:auto!important}" });
 await new Promise((r) => setTimeout(r, 2500));
 
@@ -23,7 +23,7 @@ for (const a of alvos) {
       const s = document.querySelector(a.startsWith("hero:") ? "#topo" : ".frase-trilho");
       const f = Number(a.split(":")[1]);
       scrollTo(0, s.offsetTop + (s.offsetHeight - innerHeight) * f);
-    } else if (a.startsWith("#")) {
+    } else if (a.startsWith("#") || a.startsWith(".")) {
       const [sel, f] = a.split(":");
       const el = document.querySelector(sel);
       scrollTo(0, el.getBoundingClientRect().top + scrollY - (f ? innerHeight * -Number(f) : 60));

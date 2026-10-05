@@ -25,7 +25,7 @@ export function Materiais() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${m.nome}: ${MATERIAIS_TEXTO.cta.toLowerCase()} no WhatsApp`}
-                className="revela group relative isolate flex h-[21rem] flex-col justify-end overflow-hidden rounded-[1.5rem] border border-white/10 p-7 sm:h-[26rem] md:h-[30rem] md:p-8"
+                className="chapa-sobe group relative isolate flex h-[21rem] flex-col justify-end overflow-hidden rounded-[1.5rem] border border-white/10 p-7 sm:h-[26rem] md:h-[30rem] md:p-8"
                 style={{ "--d": i % 2 } as React.CSSProperties}
               >
                 <Image src={m.foto.src} alt={m.foto.alt} fill quality={75} sizes="(min-width: 768px) 50vw, 92vw" style={{ objectPosition: m.foto.posicao }} className="-z-10 object-cover transition-transform duration-[1.2s] ease-[var(--ease-serra)] group-hover:scale-[1.05]" />

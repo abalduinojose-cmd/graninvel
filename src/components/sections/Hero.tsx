@@ -33,7 +33,7 @@ export function Hero() {
       <div aria-hidden className="veu-hero absolute inset-0 -z-10" />
       <div aria-hidden className="hero-clarear absolute inset-0 -z-10 bg-noite" />
 
-      <div className="container-page flex flex-1 flex-col justify-end pb-12 pt-32 md:pb-20">
+      <div className="hero-sai container-page flex flex-1 flex-col justify-end pb-12 pt-32 md:pb-20">
         {/* Etiqueta de chapa: como a plaqueta presa nas chapas do pátio. */}
         <p className="rise inline-flex max-w-full items-stretch self-start overflow-hidden rounded-lg border border-white/20 bg-noite/35 text-[0.64rem] font-semibold uppercase leading-none tracking-[0.12em] backdrop-blur-md sm:text-[0.72rem] sm:tracking-[0.16em]">
           <span aria-hidden className="grid w-9 place-items-center bg-[linear-gradient(135deg,var(--color-acao-quente),var(--color-acao-fundo))]">

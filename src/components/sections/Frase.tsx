@@ -13,7 +13,7 @@ import { FRASE } from "@/content/site";
 export function Frase() {
   return (
     <section aria-label="A pedra que fica" className="bg-creme px-3 pb-3 md:px-6 md:pb-6">
-      <div className="on-dark relative isolate flex min-h-[88svh] items-end overflow-hidden rounded-[1.75rem] bg-noite text-branco md:rounded-[2.5rem]">
+      <div className="quadro-abre on-dark relative isolate flex min-h-[88svh] items-end overflow-hidden rounded-[1.75rem] bg-noite text-branco md:rounded-[2.5rem]">
         <div aria-hidden className="absolute inset-0 -z-10">
           <Image src={gourmet} alt="" fill quality={85} sizes="100vw" className="deriva-foto object-cover object-[35%_50%]" />
         </div>

@@ -39,8 +39,8 @@ export function Avaliacoes() {
         <div className="min-w-0">
           <div className="lg:-mt-16">
             <Trilho rotulo="Avaliações de clientes no Google" setasClassName="mb-5 max-md:hidden">
-              {reviews.map((r) => (
-                <li key={r.autor} className="w-[84vw] max-w-[23rem] shrink-0 snap-start sm:w-[23rem]">
+              {reviews.map((r, i) => (
+                <li key={r.autor} className="entra-lado w-[84vw] max-w-[23rem] shrink-0 snap-start sm:w-[23rem]" style={{ "--d": Math.min(i, 4) } as React.CSSProperties}>
                   <figure className="flex h-full flex-col rounded-[1.5rem] border border-line bg-creme p-7">
                     <StarRating nota={r.nota} />
                     <blockquote className="mt-5 flex-1 text-[1.02rem] leading-relaxed text-ink">“{r.texto}”</blockquote>

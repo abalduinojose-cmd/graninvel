@@ -2,7 +2,7 @@
 
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Expand, X } from "lucide-react";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 
 import type { FotoGaleria } from "@/content/galeria";
 import { cx } from "@/lib/cx";
@@ -40,7 +40,7 @@ export function Trilho({ rotulo, children, className, setasClassName }: { readon
   };
 
   return (
-    <div>
+    <div className="trilho-vista">
       <div className={cx("flex justify-end gap-2", setasClassName)}>
         <button type="button" onClick={() => anda(-1)} disabled={pontas.inicio} aria-label="Anterior" className="seta-trilho">
           <ArrowLeft className="size-4" />
@@ -78,7 +78,7 @@ export function GaleriaAmbientes({ ambientes, rotulo }: { readonly ambientes: re
           const capa = a.fotos[0];
           if (!capa) return null;
           return (
-            <li key={a.nome} className="w-[80vw] max-w-[24rem] shrink-0 snap-start sm:w-[24rem]">
+            <li key={a.nome} className="entra-lado w-[80vw] max-w-[24rem] shrink-0 snap-start sm:w-[24rem]" style={{ "--d": i } as CSSProperties}>
               <article className="cartao cartao-vivo flex h-full flex-col overflow-hidden">
                 <button
                   type="button"

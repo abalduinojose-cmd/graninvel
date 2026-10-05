@@ -17,7 +17,7 @@ export function ChamadaFinal() {
       <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(80%_70%_at_50%_55%,rgb(14_14_15/0.5),rgb(14_14_15/0.82))]" />
       <div aria-hidden className="ponte-topo-branco absolute inset-x-0 top-0 -z-10 h-24" />
       <div className="container-page flex min-h-[74svh] flex-col items-center justify-center py-32 text-center">
-        <Image src={losango} alt="" sizes="72px" className="revela size-[4.5rem] drop-shadow-[0_12px_24px_rgb(0_0_0/0.5)]" />
+        <Image src={losango} alt="" sizes="72px" className="gira size-[4.5rem] drop-shadow-[0_12px_24px_rgb(0_0_0/0.5)]" />
         <h2 id="final-titulo" className="revela mt-8 max-w-[16ch] text-[clamp(2.6rem,1.4rem+4.4vw,5.4rem)] leading-[0.98]">
           {CHAMADA_FINAL.titulo}
         </h2>

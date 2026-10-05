@@ -12,7 +12,7 @@ export function Contato() {
   return (
     <section id="contato" aria-labelledby="contato-titulo" className="bg-branco pb-24 md:pb-32">
       <div className="container-page">
-        <div className="revela grid overflow-hidden rounded-[2rem] shadow-[0_40px_80px_-50px_rgb(14_14_15/0.7)] lg:grid-cols-[1fr_1.05fr]">
+        <div className="abre-corte grid overflow-hidden rounded-[2rem] shadow-[0_40px_80px_-50px_rgb(14_14_15/0.7)] lg:grid-cols-[1fr_1.05fr]">
           <div className="on-dark relative isolate overflow-hidden bg-noite p-8 text-branco md:p-12">
             <span aria-hidden className="pointer-events-none absolute -right-20 -top-20 -z-10 size-44 rotate-45 rounded-[2rem] bg-[linear-gradient(135deg,var(--color-acao-quente),var(--color-acao-fundo))] opacity-80 md:-right-24 md:-top-24 md:size-72 md:rounded-[3rem]" />
             <p className="rotulo-caps flex items-center gap-3 text-vermelho-claro">

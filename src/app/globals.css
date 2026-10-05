@@ -430,9 +430,26 @@
 }
 
 /* --------------------------------------------------------------------------
-   Movimento (Cabana): entrada do hero na carga e o resto com a rolagem, em
-   CSS scroll-driven. Estado base = estado final. Com "reduzir movimento",
-   nada se desloca: as seções só acendem.
+   Movimento: entrada do hero na carga e o resto com a rolagem, só em CSS
+   scroll-driven (nada de JavaScript: não pesa e só anda enquanto a pessoa
+   rola). Estado base = estado final; sem suporte a animation-timeline o
+   site aparece parado e inteiro.
+
+   Variedade entre as seções (pedido de 05/10), cada uma com um gesto:
+   títulos e textos sobem (.revela), fotos abrem como cortina (.cortina),
+   o quadro da frase se abre (.quadro-abre), os cartões de material sobem
+   como chapa (.chapa-sobe), os trilhos entram de lado (.entra-lado), as
+   amostras de pedra abrem em círculo (.amostra), o cartão de orçamento
+   abre do meio como um corte (.abre-corte), a faixa de materiais anda com
+   a rolagem (.faixa), o hero sai subindo (.hero-sai), o losango final
+   gira para o lugar (.gira) e a linha do divisor se desenha.
+
+   Estes rodam também com "reduzir movimento" (o Windows do Anderson está
+   assim e o efeito foi pedido), mas contidos: só
+   opacidade, recorte e deslocamentos curtos. Parallax com zoom (.deriva-*),
+   zoom de entrada e loops ficam só para quem não pediu menos movimento.
+   Os deslocamentos usam as propriedades translate/rotate, não transform,
+   para não brigar com o hover dos cartões.
    -------------------------------------------------------------------------- */
 @keyframes rise {
   from {
@@ -463,11 +480,6 @@
     background-size: 0% 100%;
   }
 }
-@keyframes aparece {
-  from {
-    opacity: 0;
-  }
-}
 @keyframes pulso {
   from {
     transform: scale(1);
@@ -482,21 +494,7 @@
   opacity: 0;
 }
 
-/* Faixa corrida da seção de números: duas cópias da lista, anda meia
-   largura e recomeça. Parada com "reduzir movimento". */
-@keyframes faixa {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  .faixa {
-    animation: faixa 48s linear infinite;
-  }
-  .faixa:hover {
-    animation-play-state: paused;
-  }
   .rise {
     animation: rise 0.9s var(--ease-serra) both;
   }
@@ -519,26 +517,167 @@
 }
 
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: reduce) {
-    .revela,
-    .cortina {
-      animation: aparece linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 18%;
+  /* ---- Rodam sempre (contidos) ------------------------------------------- */
+  @keyframes revela {
+    from {
+      opacity: 0;
+      translate: 0 26px;
     }
   }
+  .revela {
+    animation: revela linear both;
+    animation-timeline: view();
+    animation-range: entry calc(4% + var(--d, 0) * 7%) cover calc(24% + var(--d, 0) * 7%);
+  }
+
+  @keyframes cortina {
+    from {
+      clip-path: inset(18% 0 0 0 round 1.75rem);
+      opacity: 0.3;
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 1.75rem);
+    }
+  }
+  .cortina {
+    animation: cortina linear both;
+    animation-timeline: view();
+    animation-range: entry 12% cover 40%;
+  }
+
+  /* Frase: o quadro de foto se abre das margens até o tamanho cheio. */
+  @keyframes quadro-abre {
+    from {
+      clip-path: inset(6% 5% 0 5% round 3rem);
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 2.5rem);
+    }
+  }
+  .quadro-abre {
+    animation: quadro-abre linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+  }
+
+  /* Materiais: o cartão sobe de baixo como uma chapa saindo do cavalete. */
+  @keyframes chapa-sobe {
+    from {
+      clip-path: inset(100% 0 0 0 round 1.5rem);
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 1.5rem);
+    }
+  }
+  .chapa-sobe {
+    animation: chapa-sobe linear both;
+    animation-timeline: view();
+    animation-range: entry calc(5% + var(--d, 0) * 10%) cover calc(38% + var(--d, 0) * 10%);
+  }
+
+  /* Trilhos (ambientes e avaliações): os cartões entram da direita em
+     escada. O trilho é um container de rolagem horizontal, então a linha
+     do tempo é a do bloco inteiro (.trilho-vista), não a do cartão. */
+  .trilho-vista {
+    view-timeline: --trilho block;
+  }
+  @keyframes entra-lado {
+    from {
+      opacity: 0;
+      translate: 56px 0;
+    }
+  }
+  .entra-lado {
+    animation: entra-lado linear both;
+    animation-timeline: --trilho;
+    animation-range: entry calc(8% + var(--d, 0) * 8%) cover calc(34% + var(--d, 0) * 8%);
+  }
+
+  /* Pedras: a amostra abre em círculo, como a lupa sobre a superfície. */
+  @keyframes amostra {
+    from {
+      clip-path: circle(0% at 50% 50%);
+    }
+    to {
+      clip-path: circle(75% at 50% 50%);
+    }
+  }
+  .amostra {
+    animation: amostra linear both;
+    animation-timeline: view();
+    animation-range: entry calc(10% + var(--d, 0) * 5%) cover calc(36% + var(--d, 0) * 5%);
+  }
+
+  /* Orçamento: o cartão abre do meio para as bordas, como um corte. */
+  @keyframes abre-corte {
+    from {
+      clip-path: inset(0 48% 0 48% round 2rem);
+      opacity: 0.4;
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 2rem);
+    }
+  }
+  .abre-corte {
+    animation: abre-corte linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 35%;
+  }
+
+  /* Faixa de materiais: anda para o lado conforme a página rola. */
+  @keyframes faixa {
+    to {
+      translate: -28% 0;
+    }
+  }
+  .faixa {
+    animation: faixa linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+
+  /* Hero: o texto sobe e apaga enquanto a primeira dobra sai da tela. */
+  @keyframes hero-sai {
+    to {
+      opacity: 0;
+      translate: 0 -48px;
+    }
+  }
+  .hero-sai {
+    animation: hero-sai linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 85vh;
+  }
+
+  /* CTA final: o losango gira até o lugar. */
+  @keyframes gira {
+    from {
+      opacity: 0;
+      rotate: -90deg;
+      scale: 0.6;
+    }
+  }
+  .gira {
+    animation: gira linear both;
+    animation-timeline: view();
+    animation-range: entry 15% cover 40%;
+  }
+
+  /* Divisor "corte": a linha vermelha se desenha quando o divisor entra. */
+  @keyframes corte-desenha {
+    from {
+      stroke-dashoffset: 1;
+    }
+  }
+  .corte-linha {
+    stroke-dasharray: 1;
+    animation: corte-desenha linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 55%;
+  }
+
+  /* ---- Só sem "reduzir movimento": parallax com zoom ---------------------- */
   @media (prefers-reduced-motion: no-preference) {
-    @keyframes revela {
-      from {
-        opacity: 0;
-        transform: translateY(28px);
-      }
-    }
-    .revela {
-      animation: revela linear both;
-      animation-timeline: view();
-      animation-range: entry calc(4% + var(--d, 0) * 7%) cover calc(24% + var(--d, 0) * 7%);
-    }
     @keyframes deriva-hero {
       to {
         transform: translateY(6%);
@@ -561,32 +700,6 @@
       animation: deriva-foto linear both;
       animation-timeline: view();
       animation-range: cover 0% cover 100%;
-    }
-    @keyframes cortina {
-      from {
-        clip-path: inset(18% 0 0 0 round 1.75rem);
-        opacity: 0.25;
-      }
-      to {
-        clip-path: inset(0 0 0 0 round 1.75rem);
-      }
-    }
-    .cortina {
-      animation: cortina linear both;
-      animation-timeline: view();
-      animation-range: entry 12% cover 40%;
-    }
-    /* Divisor "corte": a linha vermelha se desenha quando o divisor entra. */
-    @keyframes corte-desenha {
-      from {
-        stroke-dashoffset: 1;
-      }
-    }
-    .corte-linha {
-      stroke-dasharray: 1;
-      animation: corte-desenha linear both;
-      animation-timeline: view();
-      animation-range: entry 10% cover 55%;
     }
   }
 }
