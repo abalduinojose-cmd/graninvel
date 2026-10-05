@@ -1,15 +1,16 @@
 import { Check } from "lucide-react";
 import Image from "next/image";
 
-import fachada from "@/assets/fotos/fachada-loja-itaipava.jpg";
-import patio from "@/assets/fotos/patio-pedras-loja.jpg";
+import escada from "@/assets/fotos/escada-marmore.jpg";
+import granito from "@/assets/fotos/granito-via-lactea-detalhe.jpg";
 import { DESTAQUES, SOBRE } from "@/content/site";
 
 import { SectionHeading } from "../ui/SectionHeading";
 
 /**
- * Sobre + "Como trabalhamos" (a dupla Sobre/Destaques da Cabana): a foto da
- * loja abre como cortina, com o pátio de pedras num recorte sobreposto;
+ * Sobre + "Como trabalhamos" (a dupla Sobre/Destaques da Cabana): a escada
+ * em pedra clara (no lugar da fachada da loja, a pedido) abre como cortina,
+ * com o granito Via Láctea num recorte sobreposto;
  * embaixo, as três etapas numeradas com o quadrado vermelho.
  */
 export function Sobre() {
@@ -18,11 +19,11 @@ export function Sobre() {
       <div className="container-page grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
         <div className="relative">
           <div className="cortina relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-nevoa">
-            <Image src={fachada} alt="Fachada da loja da Graninvel em Itaipava, com o losango vermelho da marca" fill quality={75} sizes="(min-width: 1024px) 40vw, 92vw" className="deriva-foto object-cover" />
+            <Image src={escada} alt="Escada com degraus e rodapé recortado em pedra clara, junto de uma porta branca" fill quality={85} sizes="(min-width: 1024px) 40vw, 92vw" className="deriva-foto object-cover" />
           </div>
           <div className="revela absolute -bottom-8 right-4 w-[44%] overflow-hidden rounded-[1.25rem] border-[6px] border-creme shadow-[0_30px_50px_-30px_rgb(14_14_15/0.6)] md:-right-8" style={{ "--d": 2 } as React.CSSProperties}>
             <div className="relative aspect-square">
-              <Image src={patio} alt="Pátio da loja com pedras decorativas separadas por tipo" fill quality={75} sizes="(min-width: 1024px) 18vw, 40vw" className="object-cover" />
+              <Image src={granito} alt="Detalhe do granito preto Via Láctea, de veios brancos" fill quality={85} sizes="(min-width: 1024px) 18vw, 40vw" className="object-cover object-[50%_100%]" />
             </div>
           </div>
         </div>

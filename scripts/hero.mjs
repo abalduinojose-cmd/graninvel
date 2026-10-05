@@ -29,11 +29,15 @@ const saida = (img, nome) =>
 
 await saida(sharp(ORIGEM).rotate().resize({ width: 2880 }), "hero-larga.jpg");
 
-// Retrato 9:17 centrado na ilha de granito (≈ 74% da largura).
-const h = meta.height;
+/* Retrato 9:17 do celular (refeito em 05/10, pedido: "a bancada não
+   aparece"): começa logo acima do tampo da ilha (≈ 40% da altura) e vai
+   até o chão, então o tampo, a torneira, o ripado e a quina de granito
+   ficam no terço de cima da tela, acima do título. */
+const h = Math.round(meta.height * 0.6);
+const top = meta.height - h;
 const w = Math.round((h * 9) / 17);
-const left = Math.min(meta.width - w, Math.max(0, Math.round(meta.width * 0.74 - w / 2)));
-await saida(sharp(ORIGEM).rotate().extract({ left, top: 0, width: w, height: h }).resize({ width: 1290 }), "hero-alta.jpg");
+const left = Math.min(meta.width - w, Math.round(meta.width * 0.645));
+await saida(sharp(ORIGEM).rotate().extract({ left, top, width: w, height: h }).resize({ width: 1290 }), "hero-alta.jpg");
 
 /* O cartão de compartilhamento (src/app/opengraph-image.jpg, 1200x630, 85KB)
    é estático: foi renderizado uma vez com esta foto, o título em Cabinet e o

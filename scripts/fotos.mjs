@@ -38,6 +38,10 @@ const CURADORIA = [
   [G("35"), "fachada-loja-itaipava", 2000],
   [G("09"), "patio-pedras-loja", 1600, { x: 0, y: 0.15, w: 1, h: 0.65 }],
   [G("37"), "showroom-cubas", 1080],
+  // v3 (05/10): Sobre, Frase e CTA final em alta, no lugar da fachada (pedido)
+  [G("46"), "escada-marmore", 2000],
+  [G("12"), "area-gourmet-serra-alta", 2400],
+  [G("29"), "bancada-branca-gourmet", 2400],
 ];
 
 /* Catálogo: arquivo 720x1280 (o 03 é 899x1599); recorte em px no original. */

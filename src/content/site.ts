@@ -47,7 +47,6 @@ export const site = {
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.graninvel.com.br"; // [[DOMÍNIO DEFINITIVO]]
 
-export const PROVA_GOOGLE = `${site.avaliacoes.cincoEstrelas} avaliações 5 estrelas no Google`;
 export const ENDERECO_LINHA = `${site.endereco.rua} - ${site.endereco.bairro}, ${site.endereco.cidade} - ${site.endereco.uf}, ${site.endereco.cep}`;
 export const PERFIL_GOOGLE = `https://www.google.com/maps/place/?q=place_id:${site.placeId}`;
 export const ROTA = `https://www.google.com/maps/dir/?api=1&destination=${site.geo.lat},${site.geo.lng}&destination_place_id=${site.placeId}`;
@@ -76,15 +75,19 @@ export const NAV = [
 /* ---- Copy por seção (estrutura da Cabana Afrodite) --------------------- */
 
 export const HERO = {
-  eyebrow: "Marmoraria em Itaipava · Petrópolis",
+  /* Etiqueta de chapa (05/10): o eyebrow vira a plaqueta que identifica as
+     chapas no pátio. Coordenadas da loja (site.geo) em graus e minutos. */
+  etiqueta: { tipo: "Marmoraria", local: "Itaipava · Petrópolis", coordenadas: "22°23′S 43°07′W" },
   h1Prefixo: "Marmoraria Graninvel em Itaipava, Petrópolis: ",
   titulo: "A pedra certa para",
   destaque: "cada detalhe",
   final: "da sua casa.",
-  subtitulo: `Mármores, granitos, superfícies sintéticas e pedras decorativas. Há mais de ${site.anos} anos em Itaipava, da escolha da chapa à instalação.`,
+  /* O subtítulo em duas vozes e a régua do corte (05/10). */
+  lead: "Mármores, granitos, superfícies sintéticas e pedras decorativas.",
+  apoio: `Há mais de ${site.anos} anos em Itaipava.`,
+  regua: ["Da escolha da chapa", "à instalação"],
   ctaPrincipal: "Pedir orçamento",
   ctaSecundario: "Falar no WhatsApp",
-  selos: [`Mais de ${site.anos} anos`, "Medição no local", "Corte e instalação", PROVA_GOOGLE],
 } as const;
 
 export const NUMEROS = {
@@ -95,6 +98,8 @@ export const NUMEROS = {
     { valor: String(site.avaliacoes.cincoEstrelas), rotulo: "avaliações de 5 estrelas no Google" },
   ],
   legenda: "Loja e pátio de pedras perto do Terminal de Itaipava",
+  /* Faixa corrida com o que a loja trabalha (catálogo do WhatsApp). */
+  faixa: ["Mármores", "Granitos", "Superfícies sintéticas", "Pedra São Tomé", "Pedra moledo", "Lajotas", "Pedra madeira", "Bancadas sob medida", "Escadas", "Bordas de piscina"],
 } as const;
 
 export const SOBRE = {
@@ -122,10 +127,7 @@ export const DESTAQUES = {
 export const FRASE = {
   poetico: "Bancada, escada, piscina ou fachada:",
   destaque: "a pedra que fica para sempre.",
-  mencoes: [
-    { valor: String(site.avaliacoes.cincoEstrelas), rotulo: "avaliações de 5 estrelas no Google" },
-    { valor: `+${site.anos}`, rotulo: "anos de marmoraria" },
-  ],
+  cta: "Ver projetos entregues",
 } as const;
 
 export const AMBIENTES_TEXTO = {
@@ -155,8 +157,8 @@ export const INSTAGRAM = {
   titulo: "Nos bastidores da pedra.",
   texto: "Chapas chegando no galpão, bancadas prontas e projetos entregues. Toque para assistir.",
   videos: [
-    { id: "chapas-no-galpao", titulo: "Reposição no galpão", legenda: "Chapas de granito chegando e sendo içadas na ponte rolante." },
     { id: "granito-via-lactea", titulo: "Granito preto Via Láctea", legenda: "Bancada de cozinha com o granito escuro de veios brancos." },
+    { id: "chapas-no-galpao", titulo: "Reposição no galpão", legenda: "Chapas de granito chegando e sendo içadas na ponte rolante." },
     { id: "ilha-branca", titulo: "Ilha branca", legenda: "Ilha de cozinha com a pedra descendo até o piso." },
   ],
   conviteTitulo: "Siga a Graninvel",

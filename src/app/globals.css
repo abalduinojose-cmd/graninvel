@@ -1,14 +1,13 @@
 @import "tailwindcss";
 
 /* --------------------------------------------------------------------------
-   Marmoraria Graninvel · v2 sobre o layout da Cabana Afrodite
-   Mesmo ritmo da Cabana (hero de tela cheia com véu e selos em vidro, faixa
-   de números, silhueta entre as seções, trilhos, frase sobre foto inteira,
-   pílulas com chip de seta, pílula fixa), com a marca da Graninvel: o
-   branco da chapa de mármore, o preto do granito polido e o vermelho do
-   losango da logo. A silhueta é a serra de Itaipava com as chapas de pedra
-   nos cavaletes do pátio; o destaque do título é um bloco vermelho que se
-   pinta na entrada.
+   Marmoraria Graninvel · v3 sobre o layout da Cabana Afrodite
+   Mesmo ritmo da Cabana (hero de tela cheia com véu, faixa de números,
+   divisor entre as seções, trilhos, frase sobre foto, pílulas com chip de
+   seta), com a marca da Graninvel: o branco da chapa de mármore, o preto
+   do granito polido e o vermelho do losango da logo. O divisor é o
+   "corte": a chapa cortada na diagonal com bisotê e a linha vermelha do
+   disco; o destaque do título é um bloco vermelho que se pinta na entrada.
 
    Tipografia: Cabinet Grotesk nos títulos (800 contra 300, o contraste de
    extremos do guia do cookbook) e General Sans no texto.
@@ -366,6 +365,13 @@
       linear-gradient(90deg, rgb(14 14 15 / 0.72) 0%, rgb(14 14 15 / 0.4) 45%, rgb(14 14 15 / 0.08) 100%),
       linear-gradient(180deg, rgb(14 14 15 / 0.45) 0%, rgb(14 14 15 / 0) 32%, rgb(14 14 15 / 0.78) 100%);
   }
+  /* Celular: a foto é o corte com o tampo da ilha em cima; o véu deixa o
+     terço de cima limpo e escurece só onde fica o texto. */
+  @media (max-width: 767px) {
+    .veu-hero {
+      background: linear-gradient(180deg, rgb(14 14 15 / 0.5) 0%, rgb(14 14 15 / 0.05) 16%, rgb(14 14 15 / 0.08) 30%, rgb(14 14 15 / 0.72) 50%, rgb(14 14 15 / 0.9) 100%);
+    }
+  }
   .veu-foto {
     background: linear-gradient(180deg, rgb(14 14 15 / 0.25) 0%, rgb(14 14 15 / 0.05) 34%, rgb(14 14 15 / 0.6) 70%, rgb(14 14 15 / 0.88) 100%);
   }
@@ -476,7 +482,21 @@
   opacity: 0;
 }
 
+/* Faixa corrida da seção de números: duas cópias da lista, anda meia
+   largura e recomeça. Parada com "reduzir movimento". */
+@keyframes faixa {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  .faixa {
+    animation: faixa 48s linear infinite;
+  }
+  .faixa:hover {
+    animation-play-state: paused;
+  }
   .rise {
     animation: rise 0.9s var(--ease-serra) both;
   }
@@ -556,16 +576,17 @@
       animation-timeline: view();
       animation-range: entry 12% cover 40%;
     }
-    /* Silhueta: as chapas sobem do chão quando o divisor entra na tela. */
-    @keyframes chapas-sobem {
+    /* Divisor "corte": a linha vermelha se desenha quando o divisor entra. */
+    @keyframes corte-desenha {
       from {
-        transform: translateY(35%);
+        stroke-dashoffset: 1;
       }
     }
-    .chapas-sobem {
-      animation: chapas-sobem linear both;
+    .corte-linha {
+      stroke-dasharray: 1;
+      animation: corte-desenha linear both;
       animation-timeline: view();
-      animation-range: entry 0% cover 60%;
+      animation-range: entry 10% cover 55%;
     }
   }
 }

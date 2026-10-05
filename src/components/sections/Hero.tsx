@@ -12,8 +12,10 @@ import { Button } from "../ui/Button";
  * cozinha com a ilha de granito preto, 6240px no original), em dois cortes
  * por <picture>: retrato no celular e paisagem do tablet em diante, para
  * nenhuma tela ampliar a foto. Véu escuro, zoom de entrada e deriva.
- * O título fica embaixo à esquerda com o trecho pintado de vermelho, as duas
- * pílulas e a faixa de selos em vidro.
+ * O título fica embaixo à esquerda com o trecho em itálico pintado de
+ * vermelho e as duas pílulas. (Os selos saíram em 05/10: repetiam a faixa
+ * de números logo abaixo.) No celular a foto é o corte com o tampo da ilha
+ * no terço de cima, e o véu escurece só a metade de baixo, onde fica o texto.
  */
 export function Hero() {
   const comum = { alt: "", sizes: "100vw", quality: 90 } as const;
@@ -25,16 +27,21 @@ export function Hero() {
         <picture>
           <source media="(min-width: 768px)" srcSet={paisagem.srcSet ?? paisagem.src} sizes={paisagem.sizes} width={paisagem.width} height={paisagem.height} />
           {/* eslint-disable-next-line jsx-a11y/alt-text -- <img> do getImageProps (art direction); alt vazio vem no spread */}
-          <img {...retrato} className="hero-zoom absolute inset-0 size-full object-cover object-[50%_45%] md:object-[70%_50%]" />
+          <img {...retrato} className="hero-zoom absolute inset-0 size-full object-cover object-[40%_0%] md:object-[70%_50%]" />
         </picture>
       </div>
       <div aria-hidden className="veu-hero absolute inset-0 -z-10" />
       <div aria-hidden className="hero-clarear absolute inset-0 -z-10 bg-noite" />
 
-      <div className="container-page flex flex-1 flex-col justify-end pb-10 pt-32 md:pb-14">
-        <p className="rise rotulo-caps flex items-center gap-3 text-branco/85 max-sm:text-[0.66rem] max-sm:tracking-[0.12em]">
-          <span aria-hidden className="traco-desenha h-px w-9 bg-vermelho-claro" />
-          {HERO.eyebrow}
+      <div className="container-page flex flex-1 flex-col justify-end pb-12 pt-32 md:pb-20">
+        {/* Etiqueta de chapa: como a plaqueta presa nas chapas do pátio. */}
+        <p className="rise inline-flex max-w-full items-stretch self-start overflow-hidden rounded-lg border border-white/20 bg-noite/35 text-[0.64rem] font-semibold uppercase leading-none tracking-[0.12em] backdrop-blur-md sm:text-[0.72rem] sm:tracking-[0.16em]">
+          <span aria-hidden className="grid w-9 place-items-center bg-[linear-gradient(135deg,var(--color-acao-quente),var(--color-acao-fundo))]">
+            <span className="size-2 rotate-45 bg-branco" />
+          </span>
+          <span className="px-3 py-2.5 text-branco">{HERO.etiqueta.tipo}</span>
+          <span className="border-l border-white/15 px-3 py-2.5 text-branco/80">{HERO.etiqueta.local}</span>
+          <span className="hidden border-l border-white/15 px-3 py-2.5 tabular-nums tracking-[0.08em] text-branco/50 md:block">{HERO.etiqueta.coordenadas}</span>
         </p>
         {/* Três linhas fixas e corpo pela largura da tela (10,5vw): a linha
             mais longa ocupa ~92% da coluna em qualquer celular, então a troca
@@ -47,7 +54,18 @@ export function Hero() {
           </span>{" "}
           <span className="block whitespace-nowrap">{HERO.final}</span>
         </h1>
-        <p className="rise mt-7 max-w-[46ch] text-[1.08rem] leading-relaxed text-branco/85 [animation-delay:0.16s] md:text-[1.15rem]">{HERO.subtitulo}</p>
+        <p className="rise mt-7 max-w-[34ch] text-[1.12rem] leading-snug [animation-delay:0.16s] md:text-[1.3rem]">
+          <span className="font-medium text-branco">{HERO.lead}</span> <span className="text-branco/60">{HERO.apoio}</span>
+        </p>
+        {/* Régua do corte: a linha vermelha do divisor, de "chapa" a "instalação". */}
+        <p className="rise mt-5 flex items-center gap-3 whitespace-nowrap text-[0.64rem] font-semibold uppercase tracking-[0.14em] text-branco/75 [animation-delay:0.2s] sm:text-[0.7rem] sm:tracking-[0.18em]">
+          {HERO.regua[0]}
+          <span aria-hidden className="relative flex w-10 shrink-0 items-center sm:w-16 md:w-28">
+            <span className="traco-desenha h-px w-full bg-vermelho-claro [animation-delay:0.5s]" />
+            <span className="absolute -right-1 size-2 rotate-45 bg-vermelho" />
+          </span>
+          {HERO.regua[1]}
+        </p>
         <div className="rise mt-9 flex flex-col gap-3 [animation-delay:0.24s] sm:flex-row">
           <Button href={waLink(MENSAGENS.hero)} tamanho="lg" variante="claro" seta>
             {HERO.ctaPrincipal}
@@ -57,14 +75,6 @@ export function Hero() {
           </Button>
         </div>
 
-        <ul aria-label="Diferenciais" className="rise mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md [animation-delay:0.32s] md:grid-cols-4">
-          {HERO.selos.map((s, i) => (
-            <li key={s} className="flex items-center gap-3 bg-noite/30 px-4 py-4 text-[0.88rem] font-medium leading-snug md:px-5">
-              <span aria-hidden className="font-display text-[0.78rem] font-extrabold text-vermelho-claro">{String(i + 1).padStart(2, "0")}</span>
-              {s}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );

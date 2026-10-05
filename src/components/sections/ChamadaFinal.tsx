@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import gourmet from "@/assets/fotos/area-gourmet-vidro.jpg";
+import bancada from "@/assets/fotos/bancada-branca-gourmet.jpg";
 import losango from "../../../public/marca/losango.png";
 import { CHAMADA_FINAL, MENSAGENS } from "@/content/site";
 import { waLink } from "@/lib/whatsapp";
@@ -12,7 +12,7 @@ export function ChamadaFinal() {
   return (
     <section aria-labelledby="final-titulo" className="on-dark relative isolate overflow-hidden bg-noite text-branco">
       <div aria-hidden className="absolute inset-0 -z-10">
-        <Image src={gourmet} alt="" fill quality={75} sizes="100vw" className="deriva-foto object-cover" />
+        <Image src={bancada} alt="" fill quality={85} sizes="100vw" className="deriva-foto object-cover" />
       </div>
       <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(80%_70%_at_50%_55%,rgb(14_14_15/0.5),rgb(14_14_15/0.82))]" />
       <div aria-hidden className="ponte-topo-branco absolute inset-x-0 top-0 -z-10 h-24" />
